@@ -1,0 +1,12 @@
+services:
+    postgres:
+        image: postgres
+
+    # workopia-api:
+    #    image: ${DOCKER_REGISTRY-}api
+    #    build:
+    #        context: .
+    #        dockerfile: src/Bootstrapper/Api/Dockerfile
+
+volumes:
+    postgres_workopia:
