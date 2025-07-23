@@ -1,6 +1,4 @@
-@extends('layout')
-
-@section('content')
+<x-layout>
     @section('title')
         Create Job
     @endsection
@@ -10,4 +8,4 @@
     @empty
         <li>No Jobs Found</li>
     @endforelse
-@endsection
+</x-layout>
