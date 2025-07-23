@@ -1,6 +1,9 @@
 # Workopia - First Laravel Project
 
-## Features: 
+## Features:
+
 - Routing
-- Blade templates
+- Blade templates - components
 - Controllers
+- Tailwind CSS
+- 
