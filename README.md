@@ -9,3 +9,6 @@
 - PostgresSQL database
 - Docker compose for the postgres database
 - Migrations
+- Eloquent ORM - relationships
+- Input validation
+- 
