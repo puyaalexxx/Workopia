@@ -2,21 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
+use Illuminate\View\View;
+
 class HomeController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-        $title = 'Welcome to Our Job Portal';
-        $description = 'Find your dream job with us.';
+        $jobs = Job::latest()->limit(6)->get();
 
-        return view('pages.index', compact('title', 'description'));
-    }
-
-    public function about()
-    {
-        $title = 'About Us';
-        $content = 'We are dedicated to connecting job seekers with employers.';
-
-        return view('pages.about', compact('title', 'content'));
+        return view('pages.index')->with('jobs', $jobs);
     }
 }

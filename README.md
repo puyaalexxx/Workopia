@@ -11,4 +11,6 @@
 - Migrations
 - Eloquent ORM - relationships
 - Input validation
-- 
+- Factories to generate fake data
+- Seeders to populate the database with fake data
+- Used Tinker to test the application
