@@ -3,7 +3,7 @@
 ## Features:
 
 - Routing
-- Blade templates - components - props - slots
+- Blade templates - components - props - slots - directives
 - Controllers
 - Tailwind CSS
 - PostgresSQL database
@@ -16,3 +16,7 @@
 - Used Tinker to test the application
 - Symlinks to store images
 - Alpine.js for alerts
+- Middleware for authentication
+- Authentication and authorization
+- Policies
+- Service Providers for policies
