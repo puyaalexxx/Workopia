@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -10,6 +11,8 @@ use Illuminate\View\View;
 
 class JobController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * Display a listing of the resource.
      */
@@ -23,8 +26,12 @@ class JobController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create(): View|RedirectResponse
     {
+        /*if (!Auth::check()) {
+            return redirect()->route('login');
+        }*/
+
         return view('jobs.create');
     }
 
@@ -55,7 +62,8 @@ class JobController extends Controller
             'company_website' => 'nullable|url',
         ]);
 
-        $validatedData['user_id'] = 1;
+        // Add the user ID of the current user
+        $validatedData['user_id'] = auth()->user()->id;
 
         // Check if a file was uploaded
         if ($request->hasFile('company_logo')) {
@@ -85,6 +93,9 @@ class JobController extends Controller
      */
     public function edit(Job $job): View
     {
+        //check if the user is authorized to edit the job
+        $this->authorize('update', $job);
+
         return view('jobs.edit')->with('job', $job);
     }
 
@@ -93,6 +104,9 @@ class JobController extends Controller
      */
     public function update(Request $request, Job $job)
     {
+        //check if the user is authorized to update the job
+        $this->authorize('update', $job);
+
         // Validate the incoming request data
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
@@ -139,6 +153,9 @@ class JobController extends Controller
      */
     public function destroy(Job $job): RedirectResponse
     {
+        //check if the user is authorized to delete the job
+        $this->authorize('delete', $job);
+
         // If there is a company logo, delete it from storage
         if ($job->company_logo) {
             Storage::delete('public/logos/' . $job->company_logo);
