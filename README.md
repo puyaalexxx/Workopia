@@ -14,3 +14,5 @@
 - Factories to generate fake data
 - Seeders to populate the database with fake data
 - Used Tinker to test the application
+- Symlinks to store images
+- Alpine.js for alerts
