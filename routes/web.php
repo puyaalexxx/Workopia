@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -20,6 +21,9 @@ Route::post('/jobs', [JobController::class, "store"])->name('jobs.store');*/
 Route::resource('jobs', JobController::class)->middleware('auth')->only(['create', 'edit', 'update', 'destroy']);
 // Define the rest of the resource routes without middleware
 Route::resource('jobs', JobController::class)->except(['create', 'edit', 'update', 'destroy']);
+
+Route::post('/jobs/{job}/apply', [ApplicantController::class, 'store'])->name('applicants.store');
+Route::delete('/applicants/{applicant}', [ApplicantController::class, 'destroy'])->name('applicants.destroy')->middleware('auth');
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisterController::class, 'register'])->name('register');
