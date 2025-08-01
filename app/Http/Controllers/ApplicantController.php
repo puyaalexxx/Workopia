@@ -44,6 +44,9 @@ class ApplicantController extends Controller
         $application->user_id = auth()->id();
         $application->save();
 
+        // Send email to owner - need to create a MailTrap account first and add the credentials to .env
+        // Mail::to($job->user->email)->send(new JobApplied($application, $job));
+
         return redirect()->back()->with('success', 'Your application has been submitted.');
     }
 

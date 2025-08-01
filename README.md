@@ -20,3 +20,5 @@
 - Authentication and authorization
 - Policies
 - Service Providers for policies
+- Mailable feature to send emails
+- Search implementation with raw SQL queries
